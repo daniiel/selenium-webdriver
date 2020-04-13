@@ -19,10 +19,12 @@ public class BaseTest {
         // BROWSER : [chrome, firefox, etc..]
         // HUB_HOST : [localhost, IP (10.0.0.2), hostname]
 
-        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+        DesiredCapabilities capabilities;
 
         if (System.getProperty("BROWSER") != null && System.getProperty("BROWSER").equalsIgnoreCase("Firefox")) {
             capabilities = DesiredCapabilities.firefox();
+        } else {
+            capabilities = DesiredCapabilities.chrome();
         }
 
         String host = System.getProperty("HUB_HOST") == null ?  "localhost" : System.getProperty("HUB_HOST");

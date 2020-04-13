@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'com.selenium.docker'
-version '1.0-SNAPSHOT'
+//version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
@@ -13,8 +13,21 @@ repositories {
 
 dependencies {
     implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
+    implementation 'org.testng:testng:7.0.0'
     testCompile group: 'org.testng', name: 'testng', version: '7.0.0'
-//    testCompile group: 'junit', name: 'junit', version: '4.12'
-//    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.6.0'
-
 }
+
+task testJar(type: Jar) {
+    description 'Generates a .jar file with the dependencies'
+    dependsOn compileTestJava
+    from sourceSets.test.output
+    destinationDirectory = file("$rootDir/build/libs")
+    archiveBaseName = project.name + "-tests"
+}
+
+task copyToLib(type: Copy) {
+    into "$rootDir/build/libs/libs"
+    from configurations.runtimeClasspath
+}
+
+build.dependsOn(copyToLib)
