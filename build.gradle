@@ -31,3 +31,4 @@ task copyToLib(type: Copy) {
 }
 
 build.dependsOn(copyToLib)
+build.finalizedBy(testJar)

@@ -1,7 +1,13 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="search-module">
-    <test name="search value">
+    <test name="search qa">
         <parameter name="value" value="qa"/>
+        <classes>
+            <class name="com.searchmodule.tests.SearchTest"/>
+        </classes>
+    </test>
+    <test name="search docker">
+        <parameter name="value" value="docker"/>
         <classes>
             <class name="com.searchmodule.tests.SearchTest"/>
         </classes>
